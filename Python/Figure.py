@@ -65,12 +65,13 @@ class DeviceModelling:
         vmin, vmax = float(inputinfo['CMap Range_0']), float(inputinfo['CMap Range_1'])
 
 
-
         S = UTIL.DataProcessing.um2cm(np.arange(ax.get_xlim()[0], ax.get_xlim()[1] + SStep, SStep))
         d = UTIL.DataProcessing.um2cm(np.arange(ax.get_ylim()[0], ax.get_ylim()[1] + dStep, dStep))
         g = UTIL.DataProcessing.um2cm(gap)
 
-        data = UTIL.DataProcessing.SphericalRadiation(S, d, g, alpha, N)
+        # data = UTIL.DataProcessing.SphericalRadiation(S, d, g, alpha, N)
+        data = UTIL.DataProcessing.SphericalRadiationNegativeRefraction(S, d, g, alpha, N)
+
         c = ax.imshow(data, cmap=colorstyle, alpha=0.8, origin='lower' ,
                       extent = [ax.get_xlim()[0], ax.get_xlim()[1], ax.get_ylim()[0], ax.get_ylim()[1]],
                       vmin = vmin, vmax = vmax)
